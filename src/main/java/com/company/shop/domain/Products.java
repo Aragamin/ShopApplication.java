@@ -41,7 +41,7 @@ public class Products {
 
     //вывод объекта в консоль
     public String printProduct(){
-        return (this.title + " "+ this.amount+" "+ this.description+" "+this.price).toString();
+        return (this.title + " "+ this.amount+" "+ this.description+" "+this.price);
     }
 
     public Integer getIdProduct() {
