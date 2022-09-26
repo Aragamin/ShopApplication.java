@@ -1,7 +1,7 @@
 package com.company.shop.Service;
 
 import com.company.shop.Repository.ProductsRepository;
-import com.company.shop.domain.Products;
+import com.company.shop.domain.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,11 +19,11 @@ public class ProductsService {
         this.productsRepository = productsRepository;
     }
     //добавление продукта в таблицу продукты
-    public boolean createProduct(Products product){
-        List<Products> productsFromBD = productsRepository.findAllByTitle(product.getTitle());
+    public boolean createProduct(Product product){
+        List<Product> productFromBD = productsRepository.findAllByTitle(product.getTitle());
 
         //если такой продукт есть, возвращаем ложь
-        for (var productEntity : productsFromBD) {
+        for (var productEntity : productFromBD) {
             if (productEntity.getDescription().equals(product.getDescription())) {
                 return false;
             }
@@ -32,7 +32,7 @@ public class ProductsService {
         return true;
     }
 
-    public List<Products> allProducts(){
+    public List<Product> allProducts(){
         return productsRepository.allProducts();
     }
 
@@ -43,12 +43,12 @@ public class ProductsService {
     }
 
     //Ищем по названию
-    public List<Products> findTitleProduct(String title){
+    public List<Product> findTitleProduct(String title){
         return productsRepository.findAllByTitle(title);
     }
 
     //Ищем по id
-    public List<Products> findAllById(Integer id){
+    public List<Product> findAllById(Integer id){
         return productsRepository.findAllByIdProduct(id);
     }
 
@@ -58,7 +58,7 @@ public class ProductsService {
         productsRepository.updateAmount(idProduct,newAmount);
     }
 
-    public List<Products> statProducts(){
+    public List<Product> statProducts(){
         return productsRepository.statProducts();
     }
 }

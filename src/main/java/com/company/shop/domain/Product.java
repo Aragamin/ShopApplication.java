@@ -5,7 +5,7 @@ import java.util.List;
 
 @Entity
 @Table(name="products")
-public class Products {
+public class Product {
 
     @Id
     @Column(name="idproduct")
@@ -28,10 +28,10 @@ public class Products {
     @ManyToMany(mappedBy = "listProducts")
     List<Orders> listOrders;
 
-    public Products() {
+    public Product() {
     }
 
-    public Products( String title, String description, Integer amount, Integer price) {
+    public Product(String title, String description, Integer amount, Integer price) {
         this.title = title;
         this.price = price;
         this.amount = amount;

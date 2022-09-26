@@ -4,7 +4,7 @@ import com.company.shop.Service.OrderService;
 import com.company.shop.Service.ProductsService;
 import com.company.shop.domain.Client;
 import com.company.shop.domain.Orders;
-import com.company.shop.domain.Products;
+import com.company.shop.domain.Product;
 import com.company.shop.additions.addProd;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -43,7 +43,7 @@ public class ClientControllers {
 
     @GetMapping("/menu.html")
     public String menu(Model model) {
-        List<Products> allProducts = productsService.allProducts();
+        List<Product> allProducts = productsService.allProducts();
         model.addAttribute("allProducts",allProducts);
         return "menu.html";
     }
@@ -53,14 +53,14 @@ public class ClientControllers {
 
 
         List<Integer> checkedItems = listCheck.getCheckedItems();
-        ArrayList<Products> newOrder = new ArrayList<>();
+        ArrayList<Product> newOrder = new ArrayList<>();
 
         if(checkedItems==null){
             return "redirect:/menu.html";
         }
 
         for (Integer id : checkedItems) {
-            Products p = productsService.findAllById(id).get(0);
+            Product p = productsService.findAllById(id).get(0);
             if (p.getAmount() != 0) {
                 newOrder.add(p);
                 productsService.updateAmount(p.getIdProduct(), p.getAmount() - 1);

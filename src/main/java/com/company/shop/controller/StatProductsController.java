@@ -2,7 +2,7 @@ package com.company.shop.controller;
 
 import com.company.shop.Service.ProductsService;
 import com.company.shop.additions.statisticsPrice;
-import com.company.shop.domain.Products;
+import com.company.shop.domain.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,7 +21,7 @@ public class StatProductsController {
     @GetMapping("/statProducts.html")
     public String stat( Model model) {
 
-        List<Products> statistics = productsService.statProducts();
+        List<Product> statistics = productsService.statProducts();
         int[] mass= new int[statistics.size()];
         for(int i=0;i<statistics.size();++i){
             mass[i]=statistics.get(i).getIdProduct();
@@ -41,7 +41,7 @@ public class StatProductsController {
 
         //считаем число повторений
         ArrayList<statisticsPrice> result = new ArrayList<>();
-        List<Products> temp = productsService.statProducts();
+        List<Product> temp = productsService.statProducts();
         int count=0;
         for(int i=0;i<statistics.size();++i){
             for(int j=0;j<temp.size();++j){

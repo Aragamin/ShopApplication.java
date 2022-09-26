@@ -32,7 +32,7 @@ public class Orders {
     public Orders() {
     }
 
-    public Orders(Integer idclient,  String status, Date date, Integer price,List<Products> listProducts){
+    public Orders(Integer idclient,  String status, Date date, Integer price,List<Product> listProducts){
         this.idclient = idclient;
         this.status = status;
         this.dateOrder = date;
@@ -57,15 +57,15 @@ public class Orders {
             name = "OrderandProduct",
             joinColumns = @JoinColumn(name = "idorder"),
             inverseJoinColumns = @JoinColumn(name = "idproduct"))
-    List<Products> listProducts;
+    List<Product> listProducts;
 
-    public List<Products> getListProducts() {
+    public List<Product> getListProducts() {
         return listProducts;
     }
 
     public Integer getIdOrder(){ return this.idOrder;}
 
-    public void setListProducts(List<Products> listProducts) {
+    public void setListProducts(List<Product> listProducts) {
         this.listProducts = listProducts;
     }
 
