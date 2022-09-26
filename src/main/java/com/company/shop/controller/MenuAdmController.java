@@ -37,7 +37,7 @@ public class MenuAdmController {
         if (amount<0) {
             return "redirect:/menuAdm.html";
         }
-       productsService.updateAmount(id,amount);
+        productsService.updateAmount(id, amount);
         return "redirect:/menuAdm.html";
     }
 }

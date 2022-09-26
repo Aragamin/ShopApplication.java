@@ -26,11 +26,11 @@ public interface ProductsRepository extends JpaRepository<Product,Long> {
 
     //Обновление количества товаров
     @Modifying
-    @Query("UPDATE Products SET amount =:newAmount WHERE idProduct=(:idProduct)")
-    Integer updateAmount(Integer idProduct, Integer newAmount);
+    @Query("UPDATE product SET amount=:newAmount WHERE idproduct=:selectedProduct")
+    void updateAmount(Integer selectedProduct, Integer newAmount);
 
    //статистика
-    @Query(value = "select * from products inner join orderand_product on products.idProduct=orderand_product.idProduct ",
+    @Query(value = "select * from product inner join orderand_product on product.idProduct=orderand_product.idProduct ",
             nativeQuery = true )
-    public List<Product> statProducts();
+    List<Product> statProducts();
 }

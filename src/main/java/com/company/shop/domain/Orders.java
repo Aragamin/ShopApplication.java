@@ -71,7 +71,7 @@ public class Orders {
 
     //Вывод заказаов
     public String printOrder() {
-        return(this.status+" "+this.dateOrder+" "+this.price).toString();
+        return (this.status+" "+this.dateOrder+" "+this.price);
     }
 
     public Integer getIdclient() {
@@ -106,18 +106,19 @@ public class Orders {
 
     //вывод номера заказа и статус
     public String printOrderStatus() {
-        return (this.idOrder+" "+this.status).toString();
+        return (this.idOrder+" "+this.status);
     }
 
-    public String printAllOrders(){
+    public String printAllOrders() {
         //("Дата заказа" +this.dateOrder);
-        String hhh="";
-        for(int i=0;i<this.listProducts.size();++i){
-            hhh+=this.listProducts.get(i).getTitle()+"\n";
+        StringBuilder listAllProducts = new StringBuilder();
+
+        for (Product listProduct : this.listProducts) {
+            listAllProducts.append(listProduct.getTitle()).append("\n");
         }
-        System.out.println("Цена " +this.price);
-        System.out.println("Статус " +this.status);
-        return ("Дата заказа " +this.dateOrder +"\n"+ hhh+ "Цена " +this.price+"\n"+"Статус " +this.status+"\n");
+        System.out.println("Цена " + this.price);
+        System.out.println("Статус " + this.status);
+        return ("Дата заказа " + this.dateOrder + "\n" + listAllProducts.toString() + "Цена " + this.price + "\n"+"Статус " + this.status + "\n");
     }
 
 
