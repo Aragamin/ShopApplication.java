@@ -39,13 +39,15 @@ public class ShopApplication {
 	private void test(){
 //
 //		добавление товара
-		Products product = new Products("Маслянная краска", "синий", 1, 1200);
+		Products product = new Products("Маслянная краска", "синий", 10, 1200);
 		productsService.createProduct(product);
-		Products product1= new Products("Акварель краска", "синий", 1, 1200);
+		Products product1= new Products("Акварель краска", "синий", 10, 1200);
 		productsService.createProduct(product1);
-		Products product2 = new Products("краска", "синий", 1, 1200);
+		Products product2 = new Products("краска", "синий", 10, 1200);
 		productsService.createProduct(product2);
-//
+		for (var productFromDB : productsService.allProducts()) {
+			productsService.updateAmount(productFromDB.getIdProduct(), 10);
+		}
 //		//вывод товара по названию
 		System.out.println("вывод товара по названию");
 		productsService.findTitleProduct("краска").forEach(it->System.out.println(it.printProduct()));
@@ -70,18 +72,22 @@ public class ShopApplication {
 //		//Добавление заказа , new Date()- формирует дату сегодняшнюю
 //
 		ArrayList<Products> orderOne=new ArrayList<>();
-		List<Products> byId1 = productsService.findAllById(1);
+		List<Products> byId1 = productsService.findAllById(68);
 		if (byId1.size() > 0) {
 			orderOne.add(byId1.get(0));
 		}
-		List<Products> byId3 = productsService.findAllById(3);
+		List<Products> byId3 = productsService.findAllById(69);
 		if (byId3.size() > 0) {
 			orderOne.add(byId3.get(0));
 		}
 		if (orderOne.size() > 1) {
 			Integer price = orderOne.get(0).getPrice()+orderOne.get(1).getPrice();
-			Orders order = new Orders(5,"Принят", new Date(), price,orderOne);
-			orderService.createOrder(order);
+			Orders order = new Orders(3,"Принят", new Date(), price, orderOne);
+			try {
+				orderService.createOrder(order);
+			} catch (Exception e) {
+				System.out.println(e);
+			}
 		}
 
 //		//Все заказы клиента
