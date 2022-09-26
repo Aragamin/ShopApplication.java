@@ -1,0 +1,172 @@
+body{
+    font-family:'Raleway',sans-serif;
+    font-size: 18px;
+    color: #ffffff;
+    margin:0;
+}
+
+
+h1,h2 {
+    margin:0px 0px 10px  0px;
+}
+p{
+    margin:0 0 10px;
+}
+.container{
+    max-width: 1170px;
+    margin:0 auto;
+}
+
+
+.header{ /*чтобы текст был поверх фонового изображения*/
+    /*width:1200px;*/
+
+    width:100%;
+    height:100px;
+    position:absolute;
+    top:30px;
+    /*left:50px;*/
+    z-index:1000;
+}
+.header_inner{
+    display:flex;
+    justify-content:space-between;
+    align-items: center;
+    padding: 35px 0;
+    border-bottom: 1px solid #515369;
+}
+
+/*Навигация верхнее меню(главн.страница) и "назад" другие страницы*/
+.nav{
+    font-size:18px;
+    font-weight:700;
+    color:#fff;
+}
+.nav_link{
+    color:#fff;
+    margin-left:20px;
+    text-transform: uppercase; /*верхний регистор*/
+    text-decoration:none; /*убрать подчеркивание*/
+}
+.nav_back{
+    color:#fff;
+    margin-left:1100px;
+    text-decoration:none;
+}
+
+
+.intro{/*фоновое изображение*/
+    display: flex;
+    flex-direction:column;
+    justify-content:center;
+    padding-top:100px;
+    height:1000px;
+    background: url("intro.jpg");
+}
+.intro_inner{
+    width:100%;
+    max-width:970px;
+    margin: 0 auto;
+    text-align: center;
+} /*основной текст*/
+.intro_title{
+    margin:0 0 30px;
+    font-size: 50px;
+    line-height:1.1;
+    font-weight: 700;
+    text-transform:uppercase;
+}
+.intro_subtitle{
+    font-size: 22px;
+    line-height:1.5;
+    font-weight: 400;
+}
+
+.list_product{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+table{
+    width: 100%;
+    border: none;
+    border-collapse:collapse;
+    text-align: center;
+}
+
+td{
+    /*padding: 10px;*/
+    margin: auto;
+    border-bottom: 1px solid #515369;
+    border-right: none;
+    border-left: none
+}
+
+.updateStatus{
+    margin-top: 35px;
+}
+.check>input{
+    position: absolute;
+    z-index: -1;
+    opacity: 0;
+}
+
+.check>span {
+    display: inline-flex;
+    align-items: center;
+    user-select: none;
+}
+
+.check>span::before {
+    content: '';
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    flex-shrink: 0;
+    flex-grow: 0;
+    border: 1px solid #adb5bd;
+    border-radius: 0.25em;
+    margin-right: 0.5em;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 50% 50%;
+}
+
+.check>input:not(:disabled):not(:checked)+span:hover::before {
+    border-color: #000000;
+}
+
+.check>input:checked+span::before {
+    border-color: #000000;
+    background-color: #000000;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%23fff' d='M6.564.75l-3.59 3.612-1.538-1.55L0 4.26 2.974 7.25 8 2.193z'/%3e%3c/svg%3e");
+}
+/* страница регистрации*/
+input[type=text], input[type=password],input[type=date],input[type=tel],input[type=email] {
+    width: 1140px;
+    padding: 15px;
+    margin: 10px 0 10px 0;
+    display: inline-block;
+    border: none;
+    background: #f1f1f1;
+}
+input[type=text]:focus, input[type=password]:focus,input[type=date]:focus,input[type=tel]:focus,input[type=email]:focus {
+    background-color: #ddd;
+    outline: none;
+}
+::placeholder{
+    color:#000;
+}
+.button {
+    font-size: 18px;
+    background-color: #000;
+    color:white;
+    padding: 16px 20px;
+    margin: 50px 350px 0px 350px;
+    border: none;
+    cursor: pointer;
+    width: 500px;
+    opacity: 0.9;
+}
+

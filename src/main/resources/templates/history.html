@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>История заказов</title>
+    <link rel="stylesheet"  href="../../../../1.css">
+</head>
+<body>
+<div class="header">
+    <div class="container">
+        <div class="header_inner">
+            <div class="header_logo">
+                <img src="../../../../logo.png" alt="">
+            </div>
+            <nav class="nav">
+                <a class="nav_link" href="menu.html">Назад</a>
+                <a class="nav_link" href="entry.html">Выйти</a>
+            </nav>
+        </div>
+        <div class="list_product">
+            <table >
+                <div  th:each="orders: ${listOrders}">
+                    <tr>
+                        <td> <p th:text="'№  '+${orders.idOrder}" /></td>
+                          <!-- <td> <p th:text="'Дата:  '+${orders.dateorder}"/></td>-->
+                           <td> <p th:text="'Статус:  '+${orders.status}" /></td>
+                           <!--<td> <p th:each="orders: ${Orders.listProducts[0]}" th:text="${products.title}"/></td>-->
+                        <td> <p th:text="'Цена:  '+${orders.price}"/></td>
+                    </tr>
+                </div>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+<div class="intro">
+    <div class="container">
+    </div>
+</div>
+</body>
+</html>
