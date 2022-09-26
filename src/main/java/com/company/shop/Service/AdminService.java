@@ -8,6 +8,8 @@ import com.company.shop.domain.Products;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class AdminService {
     @Autowired
@@ -22,12 +24,7 @@ public class AdminService {
     }
 
     public boolean findByPassAndLogin(String log, String psw){
-
-        Admin clientFromBD = adminRepository.findByLogin(log);
-
-        if(clientFromBD!=null && psw.equals(clientFromBD.getPass())){
-            return true;
-        }
-        return false;
+        List<Admin> clientFromBD = adminRepository.findByLogin(log);
+        return clientFromBD.size() > 0 && psw.equals(clientFromBD.get(0).getPass());
     }
 }
