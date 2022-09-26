@@ -16,11 +16,11 @@ import java.util.Date;
 import java.util.List;
 
 @Controller
+@SessionAttributes(types = Client.class)
 public class ClientControllers {
 
     @Autowired
     private ClientService clientService;
-    private Client client;
 
     @GetMapping("/entry.html")
     public String entry( Model model) {
@@ -35,6 +35,7 @@ public class ClientControllers {
             model.addAttribute("errorData","НЕВЕРНЫЕ ДАННЫЕ!");
             return "entry.html";
         }
+        model.addAttribute(client);
         return "redirect:/menu.html";
     }
 
@@ -49,14 +50,12 @@ public class ClientControllers {
     }
 
     @PostMapping("/menu.html")
-    public String addProducts(@ModelAttribute(value="addProd") AddProd listCheck, Model model){
-
-
+    public String addProducts(@SessionAttribute Client client, @ModelAttribute(value="addProd") AddProd listCheck, Model model){
         List<Integer> checkedItems = listCheck.getCheckedItems();
         ArrayList<Products> newOrder = new ArrayList<>();
 
         if(checkedItems==null){
-            return "redirect:/menu.html";
+            return "redirect:/menu.html";//toDO выводим сообщение
         }
 
         for (Integer id : checkedItems) {
@@ -67,8 +66,8 @@ public class ClientControllers {
             }
         }
         Integer price =0;
-        for(int i=0;i<checkedItems.size();++i){
-            price += newOrder.get(i).getPrice();
+        for(Products product : newOrder){
+            price += product.getPrice();
         }
 
         Orders order = new Orders(client.getIdClient(),"Принят", new Date(), price,newOrder);
@@ -81,8 +80,8 @@ public class ClientControllers {
 
     @GetMapping("/history.html")
     public String history(Model model) {
-        List<Orders> listOrders = orderService.findAllByIdClient(client.getIdClient());
-        model.addAttribute("listOrders",listOrders);
+       // List<Orders> listOrders = orderService.findAllByIdClient(client.getIdClient());
+        //model.addAttribute("listOrders",listOrders);
         return "history.html";
     }
 }
