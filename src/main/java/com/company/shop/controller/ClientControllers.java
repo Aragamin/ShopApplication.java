@@ -30,12 +30,11 @@ public class ClientControllers {
 
     @PostMapping("/entry.html")
     public String entryPost(@RequestParam String log,@RequestParam  String psw,  Model model) {
-
-        if(!clientService.findByPassAndLogin(log, psw)){
-             model.addAttribute("errorData","НЕВЕРНЫЕ ДАННЫЕ!");
+        Client client = clientService.findByPassAndLogin(log, psw);
+        if (client == null) {
+            model.addAttribute("errorData","НЕВЕРНЫЕ ДАННЫЕ!");
             return "entry.html";
         }
-        client = clientService.findByLogin(log);
         return "redirect:/menu.html";
     }
 
@@ -54,18 +53,17 @@ public class ClientControllers {
 
 
         List<Integer> checkedItems = listCheck.getCheckedItems();
-        ArrayList<Products> newOrder=new ArrayList<Products>();
+        ArrayList<Products> newOrder = new ArrayList<>();
 
         if(checkedItems==null){
             return "redirect:/menu.html";
         }
 
-        for (int i=0;i<checkedItems.size();++i){
-            Integer id = checkedItems.get(i);
-            Products p=productsService.findAllById(id).get(0);
-            if(p.getAmount()!=0){
+        for (Integer id : checkedItems) {
+            Products p = productsService.findAllById(id).get(0);
+            if (p.getAmount() != 0) {
                 newOrder.add(p);
-                productsService.updateAmount(p.getIdProduct(),p.getAmount()-1);
+                productsService.updateAmount(p.getIdProduct(), p.getAmount() - 1);
             }
         }
         Integer price =0;

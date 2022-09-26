@@ -1,11 +1,12 @@
 package com.company.shop.Service;
 
-import com.company.shop.Repository.AdminRepository;
 import com.company.shop.Repository.ClientRepository;
-import com.company.shop.domain.Admin;
 import com.company.shop.domain.Client;
+import com.sun.istack.Nullable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class ClientService {
@@ -16,11 +17,11 @@ public class ClientService {
         this.clientRepository = clientRepository;
     }
 
-    public boolean  createClient(Client client){
-        Client clientFromBD = clientRepository.findByLogin(client.getLogin());
+    public boolean  createClient(Client client) {
+        List<Client> clientFromBD = clientRepository.findByLogin(client.getLogin());
 
         //если логин занят, возвращаем ложь
-        if(clientFromBD!=null){
+        if(clientFromBD!=null) {
             return false;
         }
         clientRepository.save(client);
@@ -28,20 +29,20 @@ public class ClientService {
     }
 
     //Ищем клиента по  id (пока не нужно)
-    public Client findById(Integer id){
+    public List<Client> findById(Integer id) {
         return clientRepository.findAllByIdClient(id);
     }
 
-    public Client findByLogin(String log){
+    public List<Client> findByLogin(String log) {
         return clientRepository.findByLogin(log);
     }
 
-    public boolean findByPassAndLogin(String log, String psw){
-       Client clientFromBD = clientRepository.findByLogin(log);
-
-        if(clientFromBD!=null && psw.equals(clientFromBD.getPass())){
-            return true;
+    @Nullable
+    public Client findByPassAndLogin(String log, String psw) {
+        List<Client> clientFromBD = clientRepository.findByLogin(log);
+        if (clientFromBD.size() > 0 && psw.equals(clientFromBD.get(0).getPass())) {
+            return clientFromBD.get(0);
         }
-        return false;
+        return null;
     }
 }
