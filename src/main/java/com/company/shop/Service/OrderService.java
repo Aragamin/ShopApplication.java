@@ -2,7 +2,6 @@ package com.company.shop.Service;
 
 import com.company.shop.Repository.OrdersRepository;
 import com.company.shop.domain.Orders;
-import com.company.shop.domain.Products;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,7 +27,7 @@ public class OrderService {
         return ordersRepository.findAllByIdclient(idClient);
     }
     // выводим информацию по заказу по его id
-    public Orders findAllByIdorder(Integer id){
+    public List<Orders> findAllByIdorder(Integer id) {
         return ordersRepository.findAllByIdOrder(id);
     }
     //вывод id заказа и статус заказа

@@ -1,9 +1,7 @@
 package com.company.shop.Repository;
 
 import com.company.shop.domain.Client;
-import com.company.shop.domain.Products;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 

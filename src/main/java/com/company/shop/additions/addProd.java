@@ -1,6 +1,5 @@
 package com.company.shop.additions;
 
-import javax.persistence.criteria.CriteriaBuilder;
 import java.util.List;
 
 public class addProd {

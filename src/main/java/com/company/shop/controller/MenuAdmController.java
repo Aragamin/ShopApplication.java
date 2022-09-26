@@ -23,12 +23,7 @@ public class MenuAdmController {
     public String addProductNew(@RequestParam String title,@RequestParam  Integer amount,@RequestParam Integer price,@RequestParam String description, Model model) {
 
        /////////////////////////если не пишем, то ошибка страницы
-        if (title.equals(null) && amount.equals(null)&& price.equals(null)&& description.equals(null))
-        {
-            model.addAttribute("error","Не введены все данные!");
-            return "menuAdm.html";
-        }
-       Products newProduct = new Products(title,description, amount, price);
+        Products newProduct = new Products(title,description, amount, price);
 
         if (!productsService.createProduct(newProduct) )
         {
@@ -39,7 +34,7 @@ public class MenuAdmController {
     }
     @PostMapping("/menuAdm/updateAmount.html")
     public String updateAmount(@RequestParam Integer amount,@RequestParam Integer id, Model model) {
-        if(amount<0){
+        if (amount<0) {
             return "redirect:/menuAdm.html";
         }
        productsService.updateAmount(id,amount);

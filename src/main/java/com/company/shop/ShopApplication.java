@@ -14,11 +14,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
 
-import javax.transaction.Transactional;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Calendar;
 import java.util.List;
 
 @SpringBootApplication
@@ -88,7 +85,7 @@ public class ShopApplication {
 		}
 
 //		//Все заказы клиента
-		System.out.println("");
+		System.out.println();
 		orderService.findAllByIdClient(5).forEach(it->System.out.println(it.printAllOrders()));
 //
 //

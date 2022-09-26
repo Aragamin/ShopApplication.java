@@ -1,7 +1,6 @@
 package com.company.shop.Repository;
 
 import com.company.shop.domain.Orders;
-import com.company.shop.domain.Products;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -21,7 +20,7 @@ public interface OrdersRepository extends JpaRepository<Orders,Long> {
 
     List<Orders> findAllByIdclient(Integer idClient);
 
-    Orders findAllByIdOrder(Integer id);
+    List<Orders> findAllByIdOrder(Integer id);
 
     //Обновление статуса
     @Modifying
