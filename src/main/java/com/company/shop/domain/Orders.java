@@ -32,7 +32,7 @@ public class Orders {
     public Orders() {
     }
 
-    public Orders(Integer idclient,  String status, Date date, Integer price,List<Product> listProducts){
+    public Orders(Integer idclient,  String status, Date date, Integer price,List<Products> listProducts){
         this.idclient = idclient;
         this.status = status;
         this.dateOrder = date;
@@ -57,15 +57,15 @@ public class Orders {
             name = "OrderandProduct",
             joinColumns = @JoinColumn(name = "idorder"),
             inverseJoinColumns = @JoinColumn(name = "idproduct"))
-    List<Product> listProducts;
+    List<Products> listProducts;
 
-    public List<Product> getListProducts() {
+    public List<Products> getListProducts() {
         return listProducts;
     }
 
     public Integer getIdOrder(){ return this.idOrder;}
 
-    public void setListProducts(List<Product> listProducts) {
+    public void setListProducts(List<Products> listProducts) {
         this.listProducts = listProducts;
     }
 
@@ -113,7 +113,7 @@ public class Orders {
         //("Дата заказа" +this.dateOrder);
         StringBuilder listAllProducts = new StringBuilder();
 
-        for (Product listProduct : this.listProducts) {
+        for (Products listProduct : this.listProducts) {
             listAllProducts.append(listProduct.getTitle()).append("\n");
         }
         System.out.println("Цена " + this.price);

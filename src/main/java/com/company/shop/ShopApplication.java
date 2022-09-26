@@ -7,7 +7,7 @@ import com.company.shop.Service.ProductsService;
 import com.company.shop.domain.Admin;
 import com.company.shop.domain.Client;
 import com.company.shop.domain.Orders;
-import com.company.shop.domain.Product;
+import com.company.shop.domain.Products;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -39,11 +39,11 @@ public class ShopApplication {
 	private void test(){
 //
 //		добавление товара
-		Product product = new Product("Маслянная краска", "синий", 1, 1200);
+		Products product = new Products("Маслянная краска", "синий", 1, 1200);
 		productsService.createProduct(product);
-		Product product1= new Product("Акварель краска", "синий", 1, 1200);
+		Products product1= new Products("Акварель краска", "синий", 1, 1200);
 		productsService.createProduct(product1);
-		Product product2 = new Product("краска", "синий", 1, 1200);
+		Products product2 = new Products("краска", "синий", 1, 1200);
 		productsService.createProduct(product2);
 //
 //		//вывод товара по названию
@@ -69,12 +69,12 @@ public class ShopApplication {
 //
 //		//Добавление заказа , new Date()- формирует дату сегодняшнюю
 //
-		ArrayList<Product> orderOne=new ArrayList<>();
-		List<Product> byId1 = productsService.findAllById(1);
+		ArrayList<Products> orderOne=new ArrayList<>();
+		List<Products> byId1 = productsService.findAllById(1);
 		if (byId1.size() > 0) {
 			orderOne.add(byId1.get(0));
 		}
-		List<Product> byId3 = productsService.findAllById(3);
+		List<Products> byId3 = productsService.findAllById(3);
 		if (byId3.size() > 0) {
 			orderOne.add(byId3.get(0));
 		}

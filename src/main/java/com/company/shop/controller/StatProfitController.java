@@ -1,5 +1,5 @@
 package com.company.shop.controller;
-import com.company.shop.domain.Product;
+import com.company.shop.domain.Products;
 import com.company.shop.Service.ProductsService;
 import com.company.shop.additions.StatisticsPrice;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +17,7 @@ public class StatProfitController {
 
     @GetMapping("/statProfit.html")
     public String stat( Model model) {
-        List<Product>  statistics = productsService.statProducts();
+        List<Products>  statistics = productsService.statProducts();
         //удаляем повторяющиеся продукты
         for (int i = 0; i <  statistics.size() - 1; i++) {
             // Начинаем переход вперед из списка с индексом list.size () - 1
@@ -32,10 +32,10 @@ public class StatProfitController {
 
         //считаем число повторений
         ArrayList<StatisticsPrice> result = new ArrayList<>();
-        List<Product> temp = productsService.statProducts();
+        List<Products> temp = productsService.statProducts();
         int count=0;
-        for (Product statistic : statistics) {
-            for (Product product : temp) {
+        for (Products statistic : statistics) {
+            for (Products product : temp) {
                 if (statistic.getIdProduct().equals(product.getIdProduct())) {
                     ++count;
                 }

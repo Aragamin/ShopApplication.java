@@ -2,7 +2,7 @@ package com.company.shop.controller;
 
 
 import com.company.shop.Service.ProductsService;
-import com.company.shop.domain.Product;
+import com.company.shop.domain.Products;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,7 +23,7 @@ public class MenuAdmController {
     public String addProductNew(@RequestParam String title,@RequestParam  Integer amount,@RequestParam Integer price,@RequestParam String description, Model model) {
 
        /////////////////////////если не пишем, то ошибка страницы
-        Product newProduct = new Product(title,description, amount, price);
+        Products newProduct = new Products(title,description, amount, price);
 
         if (!productsService.createProduct(newProduct) )
         {
