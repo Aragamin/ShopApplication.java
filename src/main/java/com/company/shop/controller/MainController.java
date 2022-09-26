@@ -4,7 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class mainController {
+public class MainController {
     @GetMapping("/2.html")
     public String main( ) {
         return "2.html";

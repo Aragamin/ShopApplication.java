@@ -1,7 +1,7 @@
 package com.company.shop.controller;
 import com.company.shop.domain.Product;
 import com.company.shop.Service.ProductsService;
-import com.company.shop.additions.statisticsPrice;
+import com.company.shop.additions.StatisticsPrice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import java.util.*;
 
 @Controller
-public class statProfitController {
+public class StatProfitController {
 
     @Autowired
     ProductsService productsService;
@@ -18,11 +18,6 @@ public class statProfitController {
     @GetMapping("/statProfit.html")
     public String stat( Model model) {
         List<Product>  statistics = productsService.statProducts();
-        int[] mass= new int[statistics.size()];
-        for(int i=0;i<statistics.size();++i){
-            mass[i]=statistics.get(i).getIdProduct();
-        }
-
         //удаляем повторяющиеся продукты
         for (int i = 0; i <  statistics.size() - 1; i++) {
             // Начинаем переход вперед из списка с индексом list.size () - 1
@@ -36,17 +31,17 @@ public class statProfitController {
         }
 
         //считаем число повторений
-        ArrayList<statisticsPrice> result = new ArrayList<>();
+        ArrayList<StatisticsPrice> result = new ArrayList<>();
         List<Product> temp = productsService.statProducts();
         int count=0;
-        for(int i=0;i<statistics.size();++i){
-            for(int j=0;j<temp.size();++j){
-                if(statistics.get(i).getIdProduct() == temp.get(j).getIdProduct()){
+        for (Product statistic : statistics) {
+            for (Product product : temp) {
+                if (statistic.getIdProduct().equals(product.getIdProduct())) {
                     ++count;
                 }
             }
-            result.add(new statisticsPrice(statistics.get(i).getIdProduct(),count*statistics.get(i).getPrice()));
-            count=0;
+            result.add(new StatisticsPrice(statistic.getIdProduct(), count * statistic.getPrice()));
+            count = 0;
         }
         Collections.sort(result);
         Collections.reverse(result);

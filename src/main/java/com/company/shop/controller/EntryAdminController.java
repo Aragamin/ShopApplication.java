@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-public class entryAdminController {
+public class EntryAdminController {
     @Autowired
     private AdminService adminService;
 

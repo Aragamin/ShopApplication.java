@@ -1,12 +1,12 @@
 package com.company.shop.additions;
 
-public class statisticsPrice implements Comparable<statisticsPrice>{
+public class StatisticsPrice implements Comparable<StatisticsPrice>{
 
     private Integer id;
     private Integer profit;
 
 
-    public statisticsPrice(Integer id, Integer profit) {
+    public StatisticsPrice(Integer id, Integer profit) {
         this.id = id;
         this.profit = profit;
     }
@@ -20,7 +20,7 @@ public class statisticsPrice implements Comparable<statisticsPrice>{
     }
 
     @Override
-    public int compareTo(statisticsPrice o) {
+    public int compareTo(StatisticsPrice o) {
         if (getProfit() == null || o.getProfit() == null) {
             return 0;
         }

@@ -5,7 +5,7 @@ import com.company.shop.Service.ProductsService;
 import com.company.shop.domain.Client;
 import com.company.shop.domain.Orders;
 import com.company.shop.domain.Product;
-import com.company.shop.additions.addProd;
+import com.company.shop.additions.AddProd;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -49,7 +49,7 @@ public class ClientControllers {
     }
 
     @PostMapping("/menu.html")
-    public String addProducts(@ModelAttribute(value="addProd") addProd listCheck, Model model){
+    public String addProducts(@ModelAttribute(value="addProd") AddProd listCheck, Model model){
 
 
         List<Integer> checkedItems = listCheck.getCheckedItems();
