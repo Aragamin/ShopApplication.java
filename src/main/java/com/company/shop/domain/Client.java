@@ -34,12 +34,12 @@ public class Client {
     private String email;
 
     @Column(name="phone")
-    private Long phone;
+    private String phone;
 
     public Client() {
     }
 
-    public Client( String fio,  String login, String pass, String address, String email, Long phone) {
+    public Client( String fio,  String login, String pass, String address, String email, String phone) {
         this.fio = fio;
         this.login = login;
         this.pass = pass;
@@ -105,11 +105,11 @@ public class Client {
         this.email = email;
     }
 
-    public Long getPhone() {
+    public String getPhone() {
         return phone;
     }
 
-    public void setPhone(Long phone) {
+    public void setPhone(String phone) {
         this.phone = phone;
     }
 }

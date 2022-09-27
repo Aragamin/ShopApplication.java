@@ -24,12 +24,12 @@ public class Admin {
     private String pass;
 
     @Column(name = "phone")
-    private Long phone;
+    private String phone;
 
     public Admin() {
     }
 
-    public Admin(String fio, String login, String pass, Long phone) {
+    public Admin(String fio, String login, String pass, String phone) {
         this.fio = fio;
         this.login = login;
         this.pass = pass;
@@ -57,11 +57,11 @@ public class Admin {
         this.pass = pass;
     }
 
-    public Long getPhone() {
+    public String getPhone() {
         return phone;
     }
 
-    public void setPhone(Long phone) {
+    public void setPhone(String phone) {
         this.phone = phone;
     }
 }

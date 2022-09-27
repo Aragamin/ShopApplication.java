@@ -60,13 +60,13 @@ public class ShopApplication {
 		productsService.deleteProduct(2);
 
 //		//добавление клиента
-		Client client = new Client("Абоба А.А.", "boris", "123", "Улица Колотушкина", "milo@mail.ru", 89379989475L);
+		Client client = new Client("Абоба А.А.", "boris", "123", "Улица Колотушкина", "milo@mail.ru", "89379989475");
 		clientService.createClient(client);
 //
 //
 //
 //		//Добавление админа
-		Admin admin = new Admin("Кошелев В.В.", "admin", "admin", 88006666886L);
+		Admin admin = new Admin("Кошелев В.В.", "admin", "admin", "88006666886");
 		adminService.createAdmin(admin);
 //
 //		//Добавление заказа , new Date()- формирует дату сегодняшнюю
