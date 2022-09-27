@@ -60,7 +60,7 @@ public class ShopApplication {
 		productsService.deleteProduct(2);
 
 //		//добавление клиента
-		Client client = new Client("Рыжова Е.В.", "katerina", "katay99", "Улица Колотущкина", "aterina@mail.ru", 89379989475L);
+		Client client = new Client("Абоба А.А.", "boris", "123", "Улица Колотущкина", "milo@mail.ru", 89379989475L);
 		clientService.createClient(client);
 //
 //
@@ -82,7 +82,8 @@ public class ShopApplication {
 		}
 		if (orderOne.size() > 1) {
 			Integer price = orderOne.get(0).getPrice()+orderOne.get(1).getPrice();
-			Orders order = new Orders(3,"Принят", new Date(), price, orderOne);
+			Client thirdClient = clientService.findById(3).get(0);
+			Orders order = new Orders(thirdClient,"Принят", new Date(), price, orderOne);
 			try {
 				orderService.createOrder(order);
 			} catch (Exception e) {
@@ -92,7 +93,9 @@ public class ShopApplication {
 
 //		//Все заказы клиента
 		System.out.println();
-		orderService.findAllByIdClient(5).forEach(it->System.out.println(it.printAllOrders()));
+		clientService.findById(3).forEach(currentClient ->
+			currentClient.getOrdersClient().forEach(System.out::println)
+		);
 //
 //
 //		//Изменение статуса заказа

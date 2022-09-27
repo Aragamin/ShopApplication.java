@@ -5,25 +5,19 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table(name="orders")
+@Table(name = "orders")
 public class Orders {
 
     @Id
-    @Column(name="idorder")
-
+    @Column(name = "idorder")
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Integer idOrder;
-
-
-    @Column(name = "idclient")
-    private Integer idclient;
-
 
     @Column(name = "status")
     private String status;
 
     @Temporal(TemporalType.DATE)
-    @Column(name="dateorder")
+    @Column(name = "dateorder")
     private Date dateOrder;
 
     @Column(name = "price")
@@ -32,38 +26,34 @@ public class Orders {
     public Orders() {
     }
 
-    public Orders(Integer idclient,  String status, Date date, Integer price,List<Products> listProducts){
-        this.idclient = idclient;
+    public Orders(Client client, String status, Date date, Integer price, List<Products> listProducts) {
+        this.client = client;
         this.status = status;
         this.dateOrder = date;
         this.price = price;
         this.listProducts = listProducts;
     }
 
-
-    public Orders(Integer idOrder, String status){
-        this.idOrder=idOrder;
-        this.status = status;
-    }
-
     //связь заказов с клиентом
-    @ManyToOne(optional = false, cascade = CascadeType.ALL)
-    @JoinColumn(name = "idclient", insertable =  false, updatable = false)
+    @ManyToOne
     private Client client;
 
     //связь заказа с товарами
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany
     @JoinTable(
-            name = "OrderandProduct",
-            joinColumns = @JoinColumn(name = "idorder"),
-            inverseJoinColumns = @JoinColumn(name = "idproduct"))
+        name = "order_and_product",
+        joinColumns = @JoinColumn(name = "idorder"),
+        inverseJoinColumns = @JoinColumn(name = "idproduct")
+    )
     List<Products> listProducts;
 
     public List<Products> getListProducts() {
         return listProducts;
     }
 
-    public Integer getIdOrder(){ return this.idOrder;}
+    public Integer getIdOrder() {
+        return this.idOrder;
+    }
 
     public void setListProducts(List<Products> listProducts) {
         this.listProducts = listProducts;
@@ -71,11 +61,11 @@ public class Orders {
 
     //Вывод заказаов
     public String printOrder() {
-        return (this.status+" "+this.dateOrder+" "+this.price);
+        return (this.status + " " + this.dateOrder + " " + this.price);
     }
 
-    public Integer getIdclient() {
-        return idclient;
+    public Client getClient() {
+        return client;
     }
 
 
@@ -106,11 +96,12 @@ public class Orders {
 
     //вывод номера заказа и статус
     public String printOrderStatus() {
-        return (this.idOrder+" "+this.status);
+        return (this.idOrder + " " + this.status);
     }
 
-    public String printAllOrders() {
-        //("Дата заказа" +this.dateOrder);
+    @Override
+    public String toString() {
+        //("Дата заказа" + this.dateOrder);
         StringBuilder listAllProducts = new StringBuilder();
 
         for (Products listProduct : this.listProducts) {
@@ -118,8 +109,7 @@ public class Orders {
         }
         System.out.println("Цена " + this.price);
         System.out.println("Статус " + this.status);
-        return ("Дата заказа " + this.dateOrder + "\n" + listAllProducts.toString() + "Цена " + this.price + "\n"+"Статус " + this.status + "\n");
+        return ("Дата заказа " + this.dateOrder + "\n" + listAllProducts + "Цена " + this.price + "\n" + "Статус " + this.status + "\n");
     }
-
 
 }

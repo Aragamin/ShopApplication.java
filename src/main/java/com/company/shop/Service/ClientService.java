@@ -17,11 +17,11 @@ public class ClientService {
         this.clientRepository = clientRepository;
     }
 
-    public boolean  createClient(Client client) {
+    public boolean createClient(Client client) {
         List<Client> clientFromBD = clientRepository.findByLogin(client.getLogin());
 
         //если логин занят, возвращаем ложь
-        if(clientFromBD!=null) {
+        if (clientFromBD != null && !clientFromBD.isEmpty()) {
             return false;
         }
         clientRepository.save(client);

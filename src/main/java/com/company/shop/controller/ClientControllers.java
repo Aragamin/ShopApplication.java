@@ -54,8 +54,8 @@ public class ClientControllers {
         List<Integer> checkedItems = listCheck.getCheckedItems();
         ArrayList<Products> newOrder = new ArrayList<>();
 
-        if(checkedItems==null){
-            return "redirect:/menu.html";//toDO выводим сообщение
+        if(checkedItems == null || checkedItems.isEmpty()){
+            return "redirect:/menu.html";//toDO выводим сообщение, что выделено 0 предметов
         }
 
         for (Integer id : checkedItems) {
@@ -70,9 +70,9 @@ public class ClientControllers {
             price += product.getPrice();
         }
 
-        Orders order = new Orders(client.getIdClient(),"Принят", new Date(), price,newOrder);
+        Orders order = new Orders(client,"Принят", new Date(), price,newOrder);
         orderService.createOrder(order);
-        return "redirect:/menu.html";
+        return "redirect:/menu.html"; // todo выводим сообщение об успехе
     }
 
     @Autowired

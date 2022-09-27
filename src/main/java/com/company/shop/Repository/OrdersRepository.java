@@ -18,8 +18,6 @@ public interface OrdersRepository extends JpaRepository<Orders,Long> {
             nativeQuery = true )
     List<Orders> allOrders();
 
-    List<Orders> findAllByIdclient(Integer idClient);
-
     List<Orders> findAllByIdOrder(Integer id);
 
     //Обновление статуса

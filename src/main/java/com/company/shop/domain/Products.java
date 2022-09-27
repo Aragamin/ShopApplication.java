@@ -1,14 +1,13 @@
 package com.company.shop.domain;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
-@Table(name="products")
+@Table(name = "products")
 public class Products {
 
     @Id
-    @Column(name="idproduct")
+    @Column(name = "idproduct")
 
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Integer idProduct;
@@ -25,13 +24,10 @@ public class Products {
     @Column(name = "description")
     private String description;
 
-    @ManyToMany(mappedBy = "listProducts")
-    List<Orders> listOrders;
-
     public Products() {
     }
 
-    public Products( String title, String description, Integer amount, Integer price) {
+    public Products(String title, String description, Integer amount, Integer price) {
         this.title = title;
         this.price = price;
         this.amount = amount;
@@ -40,8 +36,8 @@ public class Products {
 
 
     //вывод объекта в консоль
-    public String printProduct(){
-        return (this.title + " "+ this.amount+" "+ this.description+" "+this.price);
+    public String printProduct() {
+        return (this.title + " " + this.amount + " " + this.description + " " + this.price);
     }
 
     public Integer getIdProduct() {
@@ -79,6 +75,5 @@ public class Products {
     public void setDescription(String description) {
         this.description = description;
     }
-
 
 }
