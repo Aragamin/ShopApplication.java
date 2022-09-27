@@ -46,7 +46,7 @@ public class ClientControllers {
     @GetMapping("/menu.html")
     public String menu(Model model) {
         List<Products> allProducts = productsService.allProducts();
-        model.addAttribute("allProducts",allProducts);
+        model.addAttribute("allProducts", allProducts);
         return "menu.html";
     }
 
@@ -54,7 +54,8 @@ public class ClientControllers {
     public String addProducts(@SessionAttribute Client client, @ModelAttribute(value="addProd") AddProd listCheck, Model model){
         List<Integer> checkedItems = listCheck.getCheckedItems();
         ArrayList<Products> newOrder = new ArrayList<>();
-
+        List<Products> allProducts = productsService.allProducts();
+        model.addAttribute("allProducts", allProducts);
         if(checkedItems == null || checkedItems.isEmpty()){
             model.addAttribute("errorDataMenu","НЕ ВЫБРАНЫ ПРЕДМЕТЫ ДЛЯ ПОКУПКИ!");
             return "menu.html";//toDO выводим сообщение, что выделено 0 предметов
@@ -75,7 +76,7 @@ public class ClientControllers {
         Orders order = new Orders(client,"Принят", new Date(), price,newOrder);
         orderService.createOrder(order);
         model.addAttribute("successData","Заказ принят!");
-        return "redirect:/menu.html"; // todo выводим сообщение об успехе
+        return "menu.html"; // выводим сообщение об успехе
     }
 
     @Autowired

@@ -21,17 +21,10 @@
                 <a class="nav_link" href="entry.html">Выйти</a>
             </nav>
 
-<!--            <h1>Состояние:</h1>-->
-<!--            <th><p th:text="${errorDataMenu}"/></th>-->
-<!--            <p><p th:text="${successData}"/></p>-->
-<!--            <hr>-->
-
-
         </div>
 
         <form action="#" th:action="@{/menu.html}" object="${addProd}" method="post">
             <div class="list_product">
-
                     <table >
                             <tr th:each="products: ${allProducts}">
                                 <td><p th:text="${products.title}"/></td>
@@ -43,17 +36,14 @@
                                </label> </td>
                             </tr>
                     </table>
-
             </div>
-
-            <hr>
-            <h1>Состояние:</h1>
-            <p><p th:text="${successData}"/></p>
-            <th><p th:text="${errorDataMenu}"/></th>
-            <hr>
 
             <div class="add_order">
                 <button type="submit" class="button">Создать заказ</button>
+            </div>
+
+            <div th:if="${errorDataMenu != null || successData != null}">
+                <h1>Состояние:</h1><p th:text="${errorDataMenu} != null ? ${errorDataMenu} : ${successData}"/>
             </div>
 
         </form>
