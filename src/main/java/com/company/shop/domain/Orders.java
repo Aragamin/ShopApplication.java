@@ -95,7 +95,7 @@ public class Orders {
 
 
     //вывод номера заказа и статус
-    public String printOrderStatus() {
+    public String orderStatusToString() {
         return (this.idOrder + " " + this.status);
     }
 

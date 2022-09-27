@@ -104,7 +104,7 @@ public class ShopApplication {
 //
 //		//Вывод номеров заказов и их статусы
 		System.out.println("Номер заказа(id) и статус");
-		orderService.ordersStatus().forEach(it->System.out.println(it.printOrderStatus()));
+		orderService.allOrders().forEach(it->System.out.println(it.orderStatusToString()));
 //
 	}
 }

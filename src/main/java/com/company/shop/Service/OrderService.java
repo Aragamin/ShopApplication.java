@@ -25,10 +25,6 @@ public class OrderService {
     public List<Orders> findAllByIdOrder(Integer id) {
         return ordersRepository.findAllByIdOrder(id);
     }
-    //вывод id заказа и статус заказа
-    public List<Orders> ordersStatus(){
-        return ordersRepository.ordersStatus();
-    }
 
     //обновление статуса
     @Transactional

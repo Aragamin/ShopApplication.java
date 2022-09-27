@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 @SessionAttributes(types = Client.class)
@@ -79,9 +80,18 @@ public class ClientControllers {
     private OrderService orderService;
 
     @GetMapping("/history.html")
-    public String history(Model model) {
-       // List<Orders> listOrders = orderService.findAllByIdClient(client.getIdClient());
-        //model.addAttribute("listOrders",listOrders);
+    public String history(@SessionAttribute Client client, Model model) {
+        if (client != null) {
+            List<Client> clients = clientService.findByLogin(client.getLogin());
+            if (!clients.isEmpty()) {
+                List<Orders> listOrders = clients.get(0).getOrdersClient();
+                model.addAttribute("listOrders", listOrders);
+                return "history.html";
+            }
+        } else {
+            // todo сообщение об ошибке 403
+            return "entry.html";
+        }
         return "history.html";
     }
 }

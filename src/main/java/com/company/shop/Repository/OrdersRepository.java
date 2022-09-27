@@ -9,10 +9,6 @@ import java.util.List;
 
 public interface OrdersRepository extends JpaRepository<Orders,Long> {
 
-    @Query(value ="SELECT idOrder,status FROM Orders ",
-            nativeQuery = true)
-    List<Orders> ordersStatus();
-
     //список заказов
     @Query(value = "SELECT * FROM Orders ",
             nativeQuery = true )

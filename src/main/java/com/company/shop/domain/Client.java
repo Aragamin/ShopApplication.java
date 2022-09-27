@@ -44,8 +44,8 @@ public class Client {
         this.login = login;
         this.pass = pass;
         this.address = address;
-        this.email = email;
-        this.phone = phone;
+        this.email = email; // TODO validation
+        this.phone = phone; // TODO validation
     }
 
     //связь клиента с заказами, LAZY - при загрузке клиента,автоматически не прогружаем все заказы
