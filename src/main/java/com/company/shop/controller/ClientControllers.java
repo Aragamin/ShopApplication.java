@@ -57,7 +57,7 @@ public class ClientControllers {
 
         if(checkedItems == null || checkedItems.isEmpty()){
             model.addAttribute("errorDataMenu","НЕ ВЫБРАНЫ ПРЕДМЕТЫ ДЛЯ ПОКУПКИ!");
-            return "redirect:/menu.html";//toDO выводим сообщение, что выделено 0 предметов
+            return "menu.html";//toDO выводим сообщение, что выделено 0 предметов
         }
 
         for (Integer id : checkedItems) {
