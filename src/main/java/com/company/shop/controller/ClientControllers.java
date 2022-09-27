@@ -54,28 +54,37 @@ public class ClientControllers {
     public String addProducts(@SessionAttribute Client client, @ModelAttribute(value="addProd") AddProd listCheck, Model model){
         List<Integer> checkedItems = listCheck.getCheckedItems();
         ArrayList<Products> newOrder = new ArrayList<>();
-        List<Products> allProducts = productsService.allProducts();
-        model.addAttribute("allProducts", allProducts);
-        if(checkedItems == null || checkedItems.isEmpty()){
+        if (checkedItems == null || checkedItems.isEmpty()) {
             model.addAttribute("errorDataMenu","НЕ ВЫБРАНЫ ПРЕДМЕТЫ ДЛЯ ПОКУПКИ!");
-            return "menu.html";//toDO выводим сообщение, что выделено 0 предметов
+            return "menu.html";// выводим сообщение, что выделено 0 предметов
         }
-
-        for (Integer id : checkedItems) {
-            Products p = productsService.findAllById(id).get(0);
-            if (p.getAmount() != 0) {
-                newOrder.add(p);
-                productsService.updateAmount(p.getIdProduct(), p.getAmount() - 1);
+        List<Products> products = productsService.allProducts();
+        // валидация выбранных заказов
+        for (Products p : products) {
+            if (!checkedItems.contains(p.getIdProduct())) {
+                continue;
+            }
+            if (p.getAmount() < 1) {
+                // когда выбранного товара не осталось
+                model.addAttribute("errorDataMenu", "Товар " + p.getTitle() + "закончился!");
+                return "menu.html";
             }
         }
-        Integer price =0;
-        for(Products product : newOrder){
-            price += product.getPrice();
+        Integer price = 0;
+        for (Products p : products) {
+            if (!checkedItems.contains(p.getIdProduct())) {
+                continue;
+            }
+            newOrder.add(p);
+            price += p.getPrice();
+            productsService.updateAmount(p.getIdProduct(), p.getAmount() - 1); // todo брать количество не локально, а сразу декрементить в БД
+            p.setAmount(p.getAmount() - 1);
         }
 
         Orders order = new Orders(client,"Принят", new Date(), price,newOrder);
         orderService.createOrder(order);
         model.addAttribute("successData","Заказ принят!");
+        model.addAttribute("allProducts", products);
         return "menu.html"; // выводим сообщение об успехе
     }
 
