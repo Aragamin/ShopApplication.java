@@ -60,7 +60,7 @@ public class ShopApplication {
 		productsService.deleteProduct(2);
 
 //		//добавление клиента
-		Client client = new Client("Абоба А.А.", "boris", "123", "Улица Колотущкина", "milo@mail.ru", 89379989475L);
+		Client client = new Client("Абоба А.А.", "boris", "123", "Улица Колотушкина", "milo@mail.ru", 89379989475L);
 		clientService.createClient(client);
 //
 //

@@ -13,11 +13,20 @@
             <div class="header_logo">
                 <img src="../../../../logo.png" alt="">
             </div>
+
+
             <nav class="nav">
-                <!--<a class="nav_link" href="Catalog.html">Каталог товаров</a>-->
+            <!--<a class="nav_link" href="Catalog.html">Каталог товаров</a>-->
                 <a class="nav_link" href="history.html">История заказов</a>
                 <a class="nav_link" href="entry.html">Выйти</a>
             </nav>
+
+<!--            <h1>Состояние:</h1>-->
+<!--            <th><p th:text="${errorDataMenu}"/></th>-->
+<!--            <p><p th:text="${successData}"/></p>-->
+<!--            <hr>-->
+
+
         </div>
 
         <form action="#" th:action="@{/menu.html}" object="${addProd}" method="post">
@@ -36,6 +45,13 @@
                     </table>
 
             </div>
+
+            <hr>
+            <h1>Состояние:</h1>
+            <p><p th:text="${successData}"/></p>
+            <th><p th:text="${errorDataMenu}"/></th>
+            <hr>
+
             <div class="add_order">
                 <button type="submit" class="button">Создать заказ</button>
             </div>

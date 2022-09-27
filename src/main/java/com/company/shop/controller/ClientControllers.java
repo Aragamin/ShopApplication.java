@@ -56,6 +56,7 @@ public class ClientControllers {
         ArrayList<Products> newOrder = new ArrayList<>();
 
         if(checkedItems == null || checkedItems.isEmpty()){
+            model.addAttribute("errorDataMenu","НЕ ВЫБРАНЫ ПРЕДМЕТЫ ДЛЯ ПОКУПКИ!");
             return "redirect:/menu.html";//toDO выводим сообщение, что выделено 0 предметов
         }
 
@@ -73,6 +74,7 @@ public class ClientControllers {
 
         Orders order = new Orders(client,"Принят", new Date(), price,newOrder);
         orderService.createOrder(order);
+        model.addAttribute("successData","Заказ принят!");
         return "redirect:/menu.html"; // todo выводим сообщение об успехе
     }
 
@@ -81,15 +83,23 @@ public class ClientControllers {
 
     @GetMapping("/history.html")
     public String history(@SessionAttribute Client client, Model model) {
-        if (client != null) {
-            List<Client> clients = clientService.findByLogin(client.getLogin());
-            if (!clients.isEmpty()) {
-                List<Orders> listOrders = clients.get(0).getOrdersClient();
-                model.addAttribute("listOrders", listOrders);
-                return "history.html";
+        try{
+            if (client != null) {
+                List<Client> clients = clientService.findByLogin(client.getLogin());
+                if (!clients.isEmpty()) {
+                    List<Orders> listOrders = clients.get(0).getOrdersClient();
+                    model.addAttribute("listOrders", listOrders);
+                    return "history.html";
+                }
             }
-        } else {
-            // todo сообщение об ошибке 403
+            else {
+                // todo сообщение об ошибке 403
+                model.addAttribute("errorData","НЕВЕРНЫЕ ДАННЫЕ - 403 Exception!");
+                return "entry.html";
+            }
+        } catch (Exception e){
+            System.out.println(e);
+            model.addAttribute("errorData","Error 403");
             return "entry.html";
         }
         return "history.html";
