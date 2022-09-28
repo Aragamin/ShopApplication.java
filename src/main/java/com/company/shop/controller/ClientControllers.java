@@ -68,7 +68,7 @@ public class ClientControllers {
             }
             if (p.getAmount() < 1) {
                 // когда выбранного товара не осталось
-                model.addAttribute("errorDataMenu", "Товар " + p.getTitle() + "закончился!");
+                model.addAttribute("errorDataMenu", "Товар " + p.getTitle() + " закончился!");
                 return "menu.html";
             }
         }

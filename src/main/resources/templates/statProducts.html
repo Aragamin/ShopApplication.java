@@ -17,19 +17,22 @@
                 <a class="nav_link" href="entryAdm.html">Выйти</a>
             </nav>
         </div>
-        <div class="list_product">
-            <table >
-                <tr th:each="products: ${statistics}">
-                    <td><p th:text="'Id продукта: '+${products.id}"/></td>
-                    <td><p th:text="'Количество заказов : '+${products.profit}"/></td>
-                </tr>
-            </table>
-        </div>
-    </div>
-</div>
-
-<div class="intro">
-    <div class="container">
+        <table>
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Название</th>
+                <th>Заказано</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="product: ${statistics}">
+                <td th:text="${product.id}"/>
+                <td th:text="${product.title}"/>
+                <td th:text="${product.profit}"/>
+            </tr>
+            </tbody>
+        </table>
     </div>
 </div>
 </body>

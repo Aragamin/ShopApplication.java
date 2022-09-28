@@ -44,7 +44,7 @@ public class StatProductsController {
                     ++count;
                 }
             }
-            result.add(new StatisticsPrice(statistic.getIdProduct(), count));
+            result.add(new StatisticsPrice(statistic.getIdProduct(), count, statistic.getTitle()));
             count = 0;
         }
         Collections.sort(result);

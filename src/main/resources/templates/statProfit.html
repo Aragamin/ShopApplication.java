@@ -18,19 +18,22 @@
             </nav>
 
         </div>
-        <div class="list_product">
-        <table >
-            <tr th:each="products: ${statistics}">
-                <td><p th:text="'Id продукта: '+${products.id}"/></td>
-                <td><p th:text="'Прибыль : '+${products.profit}"/></td>
-            </tr>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Название</th>
+                    <th>Выручка</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="product: ${statistics}">
+                    <td th:text="${product.id}"/>
+                    <td th:text="${product.title}"/>
+                    <td th:text="${product.profit}"/>
+                </tr>
+            </tbody>
         </table>
-    </div>
-    </div>
-</div>
-
-<div class="intro">
-    <div class="container">
     </div>
 </div>
 </body>

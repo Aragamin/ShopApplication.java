@@ -4,11 +4,16 @@ public class StatisticsPrice implements Comparable<StatisticsPrice>{
 
     private Integer id;
     private Integer profit;
+    private String title;
 
-
-    public StatisticsPrice(Integer id, Integer profit) {
+    public StatisticsPrice(Integer id, Integer profit, String title) {
         this.id = id;
+        this.title = title;
         this.profit = profit;
+    }
+
+    public String getTitle() {
+        return title;
     }
 
     public Integer getProfit() {

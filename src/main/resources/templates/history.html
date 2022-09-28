@@ -17,26 +17,27 @@
                 <a class="nav_link" href="entry.html">Выйти</a>
             </nav>
         </div>
-        <div class="list_product">
-            <table >
-                <div  th:each="orders: ${listOrders}">
-                    <tr>
-                        <td> <p th:text="'№  '+${orders.idOrder}" /></td>
-                          <!-- <td> <p th:text="'Дата:  '+${orders.dateorder}"/></td>-->
-                           <td> <p th:text="'Статус:  '+${orders.status}" /></td>
-                           <!--<td> <p th:each="orders: ${Orders.listProducts[0]}" th:text="${products.title}"/></td>-->
-                        <td> <p th:text="'Цена:  '+${orders.price}"/></td>
-                    </tr>
-                </div>
-            </table>
-        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Статус</th>
+                    <th>Цена</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="order: ${listOrders}">
+                    <td th:text="'№  '+${order.idOrder}" /></td>
+                    <!-- <td> <p th:text="'Дата:  '+${orders.dateorder}"/></td>-->
+                    <td th:text="'Статус:  '+${order.status}" /></td>
+                    <!--<td> <p th:each="orders: ${Orders.listProducts[0]}" th:text="${products.title}"/></td>-->
+                    <td th:text="'Цена:  '+${order.price}"/></td>
+                </tr>
+            </tbody>
+
+        </table>
     </div>
 
-</div>
-
-<div class="intro">
-    <div class="container">
-    </div>
 </div>
 </body>
 </html>

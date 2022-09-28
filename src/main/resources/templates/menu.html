@@ -24,19 +24,31 @@
         </div>
 
         <form action="#" th:action="@{/menu.html}" object="${addProd}" method="post">
-            <div class="list_product">
-                    <table >
-                            <tr th:each="products: ${allProducts}">
-                                <td><p th:text="${products.title}"/></td>
-                                <td><p th:text="'Описание: '+${products.description}"/></td>
-                                <td><p th:text="'В наличии: '+${products.amount}"/></td>
-                                <td><p th:text="'Цена: '+${products.price}"/></td>
-                                <td><label class="check">
-                                        <input type="checkbox" field="*{checkedItems}" name="checkedItems" th:value="${products.idProduct}"> <span>Добавить </span>
-                               </label> </td>
-                            </tr>
-                    </table>
-            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Название</th>
+                        <th>Описание</th>
+                        <th>Осталось</th>
+                        <th>Количество</th>
+                        <th>Выбрано</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="product: ${allProducts}">
+                        <td th:text="${product.title}"/>
+                        <td th:text="${product.description}"/>
+                        <td th:text="${product.amount}"/>
+                        <td th:text="${product.price}"/>
+                        <td>
+                            <label class="check">
+                                <input type="checkbox" field="*{checkedItems}" name="checkedItems" th:value="${product.idProduct}">
+                                <span>Добавить </span>
+                            </label>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
 
             <div class="add_order">
                 <button type="submit" class="button">Создать заказ</button>
@@ -49,13 +61,5 @@
         </form>
     </div>
 </header>
-
-
-
-    <div class="intro">
-        <div class="container"/>
-        </div>
-    </div>
-
 </body>
 </html>

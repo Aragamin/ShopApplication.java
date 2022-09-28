@@ -40,7 +40,7 @@ public class StatProfitController {
                     ++count;
                 }
             }
-            result.add(new StatisticsPrice(statistic.getIdProduct(), count * statistic.getPrice()));
+            result.add(new StatisticsPrice(statistic.getIdProduct(), count * statistic.getPrice(), statistic.getTitle()));
             count = 0;
         }
         Collections.sort(result);
