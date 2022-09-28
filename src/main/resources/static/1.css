@@ -41,20 +41,23 @@ p{
 
 /*Навигация верхнее меню(главн.страница) и "назад" другие страницы*/
 .nav{
-    font-size:18px;
+    font-size:20px;
     font-weight:700;
-    color:#fff;
+    color:#000000;
+    text-decoration:underline;
+    text-decoration-color:red;
 }
 .nav_link{
-    color:#fff;
+    color:#000000;
     margin-left:20px;
     text-transform: uppercase; /*верхний регистор*/
-    text-decoration:none; /*убрать подчеркивание*/
+    text-decoration:underline;
+    text-decoration-color:red;
 }
 .nav_back{
-    color:#fff;
+    color:#red;
     margin-left:1100px;
-    text-decoration:none;
+    text-decoration:#00FFFF;/*aqua подчёркивание*/
 }
 
 
