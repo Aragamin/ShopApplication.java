@@ -110,7 +110,7 @@ public class ClientControllers {
                 return "entry.html";
             }
         } catch (Exception e){
-            System.out.println(e);
+            System.out.println(e.getLocalizedMessage());
             model.addAttribute("errorData","Error 403");
             return "entry.html";
         }
