@@ -3,6 +3,7 @@ package com.company.shop.Service;
 import com.company.shop.Repository.AdminRepository;
 import com.company.shop.domain.Admin;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,8 +21,14 @@ public class AdminService {
         adminRepository.save(admin);
     }
 
-    public boolean findByPassAndLogin(String log, String psw){
-        List<Admin> clientFromBD = adminRepository.findByLogin(log);
-        return clientFromBD.size() > 0 && psw.equals(clientFromBD.get(0).getPass());
+    @Nullable
+    public Admin findByPassAndLogin(String log, String psw){
+        List<Admin> adminFromBD = adminRepository.findByLogin(log);
+        for (Admin admin : adminFromBD) {
+            if (admin.getPass().equals(psw)) {
+                return admin;
+            }
+        }
+        return null;
     }
 }
