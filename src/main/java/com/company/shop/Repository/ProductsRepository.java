@@ -26,8 +26,8 @@ public interface ProductsRepository extends JpaRepository<Products,Long> {
 
     //Обновление количества товаров
     @Modifying
-    @Query("UPDATE Products SET amount =:newAmount WHERE idProduct=(:idProduct)")
-    Integer updateAmount(Integer idProduct, Integer newAmount);
+    @Query("UPDATE Products SET amount = amount - 1 WHERE idProduct=(:idProduct)")
+    void decrementAmountProductsWithId(Integer idProduct);
 
    //статистика
     @Query(value = "select * from products inner join order_and_product on products.idProduct=order_and_product.idProduct ",

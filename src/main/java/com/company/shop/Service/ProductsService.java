@@ -54,8 +54,13 @@ public class ProductsService {
 
     //обновление количества товара
     @Transactional
-    public void updateAmount(Integer idProduct, Integer newAmount){
-        productsRepository.updateAmount(idProduct, newAmount);
+    public void decrementAmountWithId(Integer idProduct){
+        productsRepository.decrementAmountProductsWithId(idProduct);
+    }
+
+    @Transactional
+    public void updateProduct(Products product){
+        productsRepository.saveAndFlush(product);
     }
 
     public List<Products> statProducts(){

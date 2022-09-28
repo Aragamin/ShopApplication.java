@@ -79,7 +79,7 @@ public class ClientControllers {
             }
             newOrder.add(p);
             price += p.getPrice();
-            productsService.updateAmount(p.getIdProduct(), p.getAmount() - 1); // todo брать количество не локально, а сразу декрементить в БД
+            productsService.decrementAmountWithId(p.getIdProduct());
             p.setAmount(p.getAmount() - 1);
         }
 

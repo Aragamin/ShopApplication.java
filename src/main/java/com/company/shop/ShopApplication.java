@@ -46,7 +46,8 @@ public class ShopApplication {
 		Products product2 = new Products("краска", "синий", 10, 1200);
 		productsService.createProduct(product2);
 		for (var productFromDB : productsService.allProducts()) {
-			productsService.updateAmount(productFromDB.getIdProduct(), 10);
+			productFromDB.setAmount(10);
+			productsService.updateProduct(productFromDB);
 		}
 //		//вывод товара по названию
 		System.out.println("вывод товара по названию");
@@ -87,7 +88,7 @@ public class ShopApplication {
 			try {
 				orderService.createOrder(order);
 			} catch (Exception e) {
-				System.out.println(e);
+				System.out.println(e.getLocalizedMessage());
 			}
 		}
 
