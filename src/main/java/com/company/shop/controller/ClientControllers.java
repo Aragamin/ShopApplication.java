@@ -14,11 +14,12 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Controller
 @SessionAttributes(types = Client.class)
 public class ClientControllers {
+
+    private static final String ALL_PRODUCTS_TAG = "allProducts";
 
     @Autowired
     private ClientService clientService;
@@ -46,7 +47,7 @@ public class ClientControllers {
     @GetMapping("/menu.html")
     public String menu(Model model) {
         List<Products> allProducts = productsService.allProducts();
-        model.addAttribute("allProducts", allProducts);
+        model.addAttribute(ALL_PRODUCTS_TAG, allProducts);
         return "menu.html";
     }
 
@@ -54,11 +55,12 @@ public class ClientControllers {
     public String addProducts(@SessionAttribute Client client, @ModelAttribute(value="addProd") AddProd listCheck, Model model){
         List<Integer> checkedItems = listCheck.getCheckedItems();
         ArrayList<Products> newOrder = new ArrayList<>();
+        List<Products> products = productsService.allProducts();
+        model.addAttribute(ALL_PRODUCTS_TAG, products);
         if (checkedItems == null || checkedItems.isEmpty()) {
             model.addAttribute("errorDataMenu","НЕ ВЫБРАНЫ ПРЕДМЕТЫ ДЛЯ ПОКУПКИ!");
             return "menu.html";// выводим сообщение, что выделено 0 предметов
         }
-        List<Products> products = productsService.allProducts();
         // валидация выбранных заказов
         for (Products p : products) {
             if (!checkedItems.contains(p.getIdProduct())) {
@@ -84,7 +86,7 @@ public class ClientControllers {
         Orders order = new Orders(client,"Принят", new Date(), price,newOrder);
         orderService.createOrder(order);
         model.addAttribute("successData","Заказ принят!");
-        model.addAttribute("allProducts", products);
+        model.addAttribute(ALL_PRODUCTS_TAG, products);
         return "menu.html"; // выводим сообщение об успехе
     }
 
