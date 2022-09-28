@@ -45,7 +45,7 @@ public class ClientControllers {
     private ProductsService productsService;
 
     @GetMapping("/menu.html")
-    public String menu(Model model) {
+    public String menu(@SessionAttribute Client client, Model model) {
         List<Products> allProducts = productsService.allProducts();
         model.addAttribute(ALL_PRODUCTS_TAG, allProducts);
         return "menu.html";

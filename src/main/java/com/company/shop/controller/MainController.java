@@ -9,8 +9,4 @@ public class MainController {
     public String main( ) {
         return "index.html";
     }
-    @GetMapping("/err404.html")
-    public String err404( ) {
-        return "err404.html";
-    }
 }
