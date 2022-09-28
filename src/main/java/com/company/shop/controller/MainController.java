@@ -5,9 +5,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class MainController {
-    @GetMapping("/2.html")
+    @GetMapping("/index.html")
     public String main( ) {
-        return "2.html";
+        return "index.html";
     }
     @GetMapping("/err404.html")
     public String err404( ) {

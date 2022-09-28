@@ -37,8 +37,8 @@ public class ShopApplication {
 
 	@EventListener(ApplicationReadyEvent.class)
 	private void test(){
-//
-//		добавление товара
+
+		//добавление товара
 		Products product = new Products("Маслянная краска", "синий", 10, 1200);
 		productsService.createProduct(product);
 		Products product1= new Products("Акварель краска", "синий", 10, 1200);
@@ -49,29 +49,28 @@ public class ShopApplication {
 			productFromDB.setAmount(10);
 			productsService.updateProduct(productFromDB);
 		}
-//		//вывод товара по названию
+		//вывод товара по названию
 		System.out.println("вывод товара по названию");
 		productsService.findTitleProduct("краска").forEach(it->System.out.println(it.printProduct()));
-//
-//		//вывод списка товаров
+
+		//вывод списка товаров
 		System.out.println("вывод списка товаров");
 		productsService.allProducts().forEach(it->System.out.println(it.printProduct()));
-//
-//		//удаление продукта по id
+
+		//удаление продукта по id
 		productsService.deleteProduct(2);
 
-//		//добавление клиента
+		//добавление клиента
 		Client client = new Client("Абоба А.А.", "boris", "123", "Улица Колотушкина", "milo@mail.ru", "89379989475");
 		clientService.createClient(client);
-//
-//
-//
-//		//Добавление админа
+
+
+		//Добавление админа
 		Admin admin = new Admin("Кошелев В.В.", "admin", "admin", "88006666886");
 		adminService.createAdmin(admin);
-//
-//		//Добавление заказа , new Date()- формирует дату сегодняшнюю
-//
+
+		//Добавление заказа , new Date()- формирует дату сегодняшнюю
+
 		ArrayList<Products> orderOne=new ArrayList<>();
 		List<Products> byId1 = productsService.findAllById(68);
 		if (byId1.size() > 0) {
@@ -92,20 +91,20 @@ public class ShopApplication {
 			}
 		}
 
-//		//Все заказы клиента
+		//Все заказы клиента
 		System.out.println();
 		clientService.findById(3).forEach(currentClient ->
 			currentClient.getOrdersClient().forEach(System.out::println)
 		);
-//
-//
-//		//Изменение статуса заказа
+
+
+		//Изменение статуса заказа
 		String status="Собран";
         orderService.updateStatus(7,status);
-//
-//		//Вывод номеров заказов и их статусы
+
+		//Вывод номеров заказов и их статусы
 		System.out.println("Номер заказа(id) и статус");
 		orderService.allOrders().forEach(it->System.out.println(it.orderStatusToString()));
-//
+
 	}
 }
