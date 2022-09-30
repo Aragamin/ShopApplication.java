@@ -39,23 +39,25 @@ public class ShopApplication {
 	private void test(){
 
 		//добавление товара
-		Products product = new Products("Маслянная краска", "синий", 10, 1200);
+		Products product = new Products("Nokia 3370", "синий телефон", 10, 1200);
 		productsService.createProduct(product);
-		Products product1= new Products("Акварель краска", "синий", 10, 1200);
+		Products product1= new Products("Стилус", "сенсорный", 10, 1200);
 		productsService.createProduct(product1);
-		Products product2 = new Products("краска", "синий", 10, 1200);
+		Products product2 = new Products("Умные очки", "бета-версия", 10, 1200);
 		productsService.createProduct(product2);
 		for (var productFromDB : productsService.allProducts()) {
 			productFromDB.setAmount(10);
 			productsService.updateProduct(productFromDB);
 		}
 		//вывод товара по названию
-		System.out.println("вывод товара по названию");
-		productsService.findTitleProduct("краска").forEach(it->System.out.println(it.printProduct()));
+		System.out.println("вывод товара по названию >>");
+		productsService.findTitleProduct("Стилус").forEach(it->System.out.println(it.printProduct()));
+		System.out.println();
 
 		//вывод списка товаров
-		System.out.println("вывод списка товаров");
+		System.out.println("вывод списка товаров >>");
 		productsService.allProducts().forEach(it->System.out.println(it.printProduct()));
+		System.out.println();
 
 		//удаление продукта по id
 		productsService.deleteProduct(2);
@@ -92,10 +94,10 @@ public class ShopApplication {
 		}
 
 		//Все заказы клиента
-		System.out.println();
-		clientService.findById(3).forEach(currentClient ->
-			currentClient.getOrdersClient().forEach(System.out::println)
-		);
+//		System.out.println();
+//		clientService.findById(3).forEach(currentClient ->
+//			currentClient.getOrdersClient().forEach(System.out::println)
+//		);
 
 
 		//Изменение статуса заказа

@@ -43,12 +43,12 @@ p{
 .nav{
     font-size:20px;
     font-weight:700;
-    color:#000000;
+    color:#ffffff;
     text-decoration:underline;
     text-decoration-color:red;
 }
 .nav_link{
-    color:#000000;
+    color:#ffffff;
     margin-left:20px;
     text-transform: uppercase; /*верхний регистор*/
     text-decoration:underline;
@@ -57,7 +57,7 @@ p{
 .nav_back{
     color:#red;
     margin-left:1100px;
-    text-decoration:#00FFFF;/*aqua подчёркивание*/
+    text-decoration:#ffffff;
 }
 
 

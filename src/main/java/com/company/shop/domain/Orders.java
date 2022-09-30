@@ -16,7 +16,7 @@ public class Orders {
     @Column(name = "status")
     private String status;
 
-    @Temporal(TemporalType.DATE)
+    //@Temporal(TemporalType.DATE)
     @Column(name = "dateorder")
     private Date dateOrder;
 
@@ -34,9 +34,11 @@ public class Orders {
         this.listProducts = listProducts;
     }
 
+    //todo problem begin
     //связь заказов с клиентом
     @ManyToOne
     private Client client;
+    //todo problem end
 
     //связь заказа с товарами
     @ManyToMany

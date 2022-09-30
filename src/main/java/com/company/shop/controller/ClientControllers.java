@@ -105,7 +105,6 @@ public class ClientControllers {
                 }
             }
             else {
-                // todo сообщение об ошибке 403
                 model.addAttribute("errorData","НЕВЕРНЫЕ ДАННЫЕ - 403 Exception!");
                 return "entry.html";
             }
